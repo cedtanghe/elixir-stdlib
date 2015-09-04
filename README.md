@@ -1,1 +1,1 @@
-# elixir-lib
+# elixir-stdlib
