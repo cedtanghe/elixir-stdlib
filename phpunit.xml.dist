@@ -4,7 +4,7 @@
          bootstrap="./tests/bootstrap.php"
          colors="true">
     <testsuites>
-        <testsuite name="elixir-lib Test Suite">
+        <testsuite name="elixir-stdlib Test Suite">
             <directory>./tests/</directory>
         </testsuite>
     </testsuites>
