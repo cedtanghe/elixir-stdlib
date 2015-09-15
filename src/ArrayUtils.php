@@ -2,11 +2,16 @@
 
 namespace Elixir\STDLib;
 
+use Elixir\STDLib\MacroableTrait;
+
 /**
  * @author Cédric Tanghe <ced.tanghe@gmail.com>
  */
+
 class ArrayUtils
 {
+    use MacroableTrait;
+    
     /**
      * @param mixed $key
      * @param array $data

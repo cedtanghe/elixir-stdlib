@@ -24,5 +24,6 @@
         }
     },
     "suggest": {
+        "elixir/elixir-i18n": "~1.0"
     }
 }
