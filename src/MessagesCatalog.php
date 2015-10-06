@@ -2,7 +2,6 @@
 
 namespace Elixir\STDLib;
 
-use Elixir\I18N\I18NInterface;
 use Elixir\STDLib\ArrayUtils;
 
 /**
@@ -12,14 +11,27 @@ use Elixir\STDLib\ArrayUtils;
 class MessagesCatalog
 {
     /**
+     * @var MessagesCatalog
+     */
+    protected static $instance;
+    
+    /**
+     * @return MessagesCatalog
+     */
+    public static function instance()
+    {
+        if (null === static::$instance)
+        {
+            static::$instance = new static();
+        }
+        
+        return static::$instance;
+    }
+    
+    /**
      * @var array
      */
     protected $messages = [];
-    
-    /**
-     * @var I18NInterface
-     */
-    protected $translator;
     
     /**
      * @param array $messages
@@ -29,44 +41,6 @@ class MessagesCatalog
         $this->messages += $messages;
     }
     
-    /**
-     * @param I18NInterface $value
-     */
-    public function setTranslator(I18NInterface $value)
-    {
-        $this->translator = $value;
-    }
-    
-    /**
-     * @return I18NInterface
-     */
-    public function getTranslator()
-    {
-        return $this->translator;
-    }
-    
-    /**
-     * @see I18NInterface::translate()
-     */
-    public function translate($message, array $options = [])
-    {
-        if ($this->translator)
-        {
-            return $this->translator->translate($message, $options);
-        }
-        
-        return $message;
-    }
-    
-    /**
-     * @param string $message
-     * @return string
-     */
-    public static function __($message)
-    {
-        return $message;
-    }
-
     /**
      * @param string|array $key
      * @return boolean

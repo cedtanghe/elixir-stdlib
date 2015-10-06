@@ -13,14 +13,13 @@ class ArrayUtils
     use MacroableTrait;
     
     /**
-     * @param mixed $key
+     * @param int|string|array $key
      * @param array $data
      * @return boolean
      */
     public static function has($key, array $data)
     {
         $segments = (array)$key;
-        $data = $data;
 
         foreach ($segments as $segment)
         {
@@ -36,7 +35,7 @@ class ArrayUtils
     }
 
     /**
-     * @param mixed $key
+     * @param int|string|array $key
      * @param array $data
      * @param mixed $default
      * @return mixed
@@ -59,7 +58,7 @@ class ArrayUtils
     }
 
     /**
-     * @param mixed $key
+     * @param int|string|array $key
      * @param mixed $value
      * @param array $data
      */
@@ -83,7 +82,7 @@ class ArrayUtils
     }
 
     /**
-     * @param mixed $key
+     * @param int|string|array $key
      * @param array $data
      */
     public static function remove($key, array &$data)
