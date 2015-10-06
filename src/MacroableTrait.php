@@ -30,7 +30,7 @@ trait MacroableTrait
     {
         return isset(static::$macros[$name]);
     }
-
+    
     /**
      * @ignore
      * @throws \BadMethodCallException

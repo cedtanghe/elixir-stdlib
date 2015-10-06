@@ -8,7 +8,7 @@ use Elixir\STDLib\ArrayUtils;
  * @author Cédric Tanghe <ced.tanghe@gmail.com>
  */
 
-class MessagesCatalog
+class MessagesCatalog implements \ArrayAccess, \Iterator, \Countable, \JsonSerializable
 {
     /**
      * @var MessagesCatalog
@@ -103,8 +103,126 @@ class MessagesCatalog
     {
         $this->messages = $data;
     }
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function offsetExists($key)
+    {
+        return $this->has($key);
+    }
 
     /**
+     * {@inheritdoc}
+     * @throws \InvalidArgumentException
+     */
+    public function offsetSet($key, $value) 
+    {
+        if (null === $key)
+        {
+            throw new \InvalidArgumentException('The key can not be undefined.');
+        }
+
+        $this->set($key, $value);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function offsetGet($key) 
+    {
+        return $this->get($key);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function offsetUnset($key)
+    {
+        $this->remove($key);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function rewind() 
+    {
+        return reset($this->messages);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function current() 
+    {
+        return $this->get(key($this->messages));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function key() 
+    {
+        return key($this->messages);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function next()
+    {
+        return next($this->messages);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function valid() 
+    {
+        return null !== key($this->messages);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function count()
+    {
+        return count($this->messages);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function __issset($key) 
+    {
+        return $this->has($key);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function __get($key) 
+    {
+        return $this->get($key);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function __set($key, $value)
+    {
+        $this->set($key, $value);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function __unset($key) 
+    {
+        $this->remove($key);
+    }
+    
+     /**
      * @param array|MessageCatalog
      * @param boolean $recursive
      */
@@ -116,5 +234,21 @@ class MessagesCatalog
         }
         
         $this->messages = $recursive ? array_merge_recursive($this->messages, $data) : array_merge($this->messages, $data);
+    }
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function jsonSerialize() 
+    {
+        return $this->__debugInfo();
+    }
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function __debugInfo()
+    {
+        return $this->messages;
     }
 }
