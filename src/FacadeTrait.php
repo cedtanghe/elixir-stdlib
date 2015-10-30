@@ -13,12 +13,7 @@ trait FacadeAbstract
      * @var ContainerInterface
      */
     protected static $container;
-
-    /**
-     * @var array
-     */
-    protected static $resolvedInstances = [];
-
+    
     /**
      * @return ContainerInterface
      */
@@ -32,7 +27,7 @@ trait FacadeAbstract
      */
     public static function setContainer(ContainerInterface $value)
     {
-        static::$_container = $value;
+        static::$container = $value;
     }
 
     /**
@@ -45,11 +40,13 @@ trait FacadeAbstract
     }
     
     /**
-     * @param string $key
+     * @param string|null $key
      * @return mixed|null
      */
-    public static function resolveInstance($key)
+    public static function resolveInstance($key = null)
     {
+        $key = $key ?: static::getFacadeAccessor();
+        
         if (null === static::$container)
         {
             // Todo

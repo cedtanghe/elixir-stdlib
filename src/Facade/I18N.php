@@ -12,6 +12,14 @@ class I18N
     use FacadeTrait;
     
     /**
+     * {@inheritdoc}
+     */
+    protected static function getFacadeAccessor() 
+    {
+        return 'Elixir\I18N\I18NInterface';
+    }
+    
+    /**
      * @param string $message
      * @param array $options
      * @return string
