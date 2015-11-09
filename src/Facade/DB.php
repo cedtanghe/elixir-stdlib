@@ -2,13 +2,13 @@
 
 namespace Elixir\STDLib\Facade;
 
-use Elixir\Cache\CacheInterface;
+use Elixir\DB\DBInterface;
 use Elixir\STDLib\FacadeTrait;
 
 /**
  * @author Cédric Tanghe <ced.tanghe@gmail.com>
  */
-class Cache 
+class DB 
 {
     use FacadeTrait;
     
@@ -17,12 +17,12 @@ class Cache
      */
     protected static function getFacadeAccessor() 
     {
-        return 'Elixir\Cache\CacheInterface';
+        return 'Elixir\DB\DBInterface';
     }
     
     /**
      * @param string $name
-     * @return CacheInterface|null
+     * @return DBInterface|null
      */
     public static function with($name)
     {

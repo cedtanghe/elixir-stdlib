@@ -1,13 +1,13 @@
 <?php
 
-namespace Elixir\Facade;
+namespace Elixir\STDLib;
 
 use Elixir\DI\ContainerInterface;
 
 /**
  * @author Cédric Tanghe <ced.tanghe@gmail.com>
  */
-trait FacadeAbstract 
+trait FacadeTrait 
 {
     /**
      * @var ContainerInterface
