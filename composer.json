@@ -31,6 +31,6 @@
         }
     },
     "suggest": {
-        "elixir/elixir-di": "~1.0"
+        "elixir/elixir-di": "*"
     }
 }
