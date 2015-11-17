@@ -7,7 +7,7 @@ use Elixir\STDLib\FacadeTrait;
 /**
  * @author Cédric Tanghe <ced.tanghe@gmail.com>
  */
-class I18N 
+class App 
 {
     use FacadeTrait;
     
@@ -16,6 +16,6 @@ class I18N
      */
     protected static function getFacadeAccessor() 
     {
-        return 'Elixir\Foundation\ApplicationInterface';
+        return 'Elixir\Foundation\KernelInterface';
     }
 }

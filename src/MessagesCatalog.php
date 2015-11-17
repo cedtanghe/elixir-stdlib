@@ -189,40 +189,8 @@ class MessagesCatalog implements \ArrayAccess, \Iterator, \Countable, \JsonSeria
     {
         return count($this->messages);
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function __issset($key) 
-    {
-        return $this->has($key);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function __get($key) 
-    {
-        return $this->get($key);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function __set($key, $value)
-    {
-        $this->set($key, $value);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function __unset($key) 
-    {
-        $this->remove($key);
-    }
     
-     /**
+    /**
      * @param array|MessageCatalog
      * @param boolean $recursive
      */
