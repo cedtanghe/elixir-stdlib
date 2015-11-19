@@ -16,6 +16,6 @@ class App
      */
     protected static function getFacadeAccessor() 
     {
-        return 'Elixir\Foundation\KernelInterface';
+        return 'Elixir\Kernel\KernelInterface';
     }
 }
