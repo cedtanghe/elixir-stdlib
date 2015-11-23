@@ -8,7 +8,7 @@ use Elixir\STDLib\ArrayUtils;
  * @author Cédric Tanghe <ced.tanghe@gmail.com>
  */
 
-class MessagesCatalog implements \ArrayAccess, \Iterator, \Countable, \JsonSerializable
+class MessagesCatalog implements \ArrayAccess, \Iterator, \Countable
 {
     /**
      * @var MessagesCatalog
@@ -205,15 +205,7 @@ class MessagesCatalog implements \ArrayAccess, \Iterator, \Countable, \JsonSeria
     }
     
     /**
-     * {@inheritdoc}
-     */
-    public function jsonSerialize() 
-    {
-        return $this->__debugInfo();
-    }
-    
-    /**
-     * {@inheritdoc}
+     * @ignore
      */
     public function __debugInfo()
     {
