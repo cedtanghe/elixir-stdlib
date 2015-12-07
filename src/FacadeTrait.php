@@ -46,19 +46,11 @@ trait FacadeTrait
     public static function resolveInstance($key = null)
     {
         $key = $key ?: static::getFacadeAccessor();
-        
-        if (null === static::$container)
-        {
-            // Todo
-        }
-
         return static::$container->get($key, [], null);
     }
 
     /**
-     * @param string $method
-     * @param array $arguments
-     * @return mixed|void
+     * @ignore
      */
     public static function __callStatic($method, $arguments) 
     {
