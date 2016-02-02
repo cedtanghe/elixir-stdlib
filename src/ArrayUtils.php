@@ -14,16 +14,16 @@ class ArrayUtils
     
     /**
      * @param int|string|array $key
-     * @param array $data
+     * @param array|\ArrayAccess $data
      * @return boolean
      */
-    public static function has($key, array $data)
+    public static function has($key, $data)
     {
         $segments = (array)$key;
 
         foreach ($segments as $segment)
         {
-            if (!is_array($data) || !array_key_exists($segment, $data))
+            if (!isset($data[$segment]))
             {
                 return false;
             }
@@ -36,17 +36,17 @@ class ArrayUtils
 
     /**
      * @param int|string|array $key
-     * @param array $data
+     * @param array|\ArrayAccess $data
      * @param mixed $default
      * @return mixed
      */
-    public static function get($key, array $data, $default = null) 
+    public static function get($key, $data, $default = null) 
     {
         $segments = (array)$key;
 
         foreach ($segments as $segment)
         {
-            if (!is_array($data) || !array_key_exists($segment, $data))
+            if (!isset($data[$segment]))
             {
                 return is_callable($default) ? call_user_func($default) : $default;
             }
@@ -60,9 +60,9 @@ class ArrayUtils
     /**
      * @param int|string|array $key
      * @param mixed $value
-     * @param array $data
+     * @param array|\ArrayAccess $data
      */
-    public static function set($key, $value, array &$data)
+    public static function set($key, $value, &$data)
     {
         $segments = (array)$key;
 
@@ -70,7 +70,7 @@ class ArrayUtils
         {
             $segment = array_shift($segments);
 
-            if (!is_array($data) || !array_key_exists($segment, $data))
+            if (!isset($data[$segment]))
             {
                 $data[$segment] = [];
             }
@@ -83,9 +83,9 @@ class ArrayUtils
 
     /**
      * @param int|string|array $key
-     * @param array $data
+     * @param array|\ArrayAccess $data
      */
-    public static function remove($key, array &$data)
+    public static function remove($key, &$data)
     {
         $segments = (array)$key;
 
@@ -93,7 +93,7 @@ class ArrayUtils
         {
             $segment = array_shift($segments);
 
-            if (!is_array($data) || !array_key_exists($segment, $data)) 
+            if (!isset($data[$segment]))
             {
                 return;
             }

@@ -111,7 +111,7 @@ class StringUtils
                 $start = explode(' ', substr($str, 0, $to + 25));
                 $end = explode(' ', $result);
 
-                if (end($start) != end($end)) 
+                if (end($start) !== end($end)) 
                 {
                     array_pop($end);
                     $result = implode(' ', $end);
