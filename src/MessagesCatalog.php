@@ -192,16 +192,15 @@ class MessagesCatalog implements \ArrayAccess, \Iterator, \Countable
     
     /**
      * @param array|MessageCatalog
-     * @param boolean $recursive
      */
-    public function merge($data, $recursive = false)
+    public function merge($data)
     {
         if ($data instanceof self)
         {
             $data = $data->all();
         }
         
-        $this->messages = $recursive ? array_merge_recursive($this->messages, $data) : array_merge($this->messages, $data);
+        $this->messages = array_merge($this->messages, $data);
     }
     
     /**
