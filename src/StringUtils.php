@@ -93,20 +93,20 @@ class StringUtils
     /**
      * @param string $str
      * @param integer $max
-     * @param string $cut
-     * @param boolean $useWord
+     * @param string $ellipsis
+     * @param boolean $wordBoundary
      * @return string
      */
-    public static function resume($str, $max = 100, $cut = '...', $useWord = true)
+    public static function summary($str, $max = 100, $ellipsis = '...', $wordBoundary = true)
     {
         $str = strip_tags($str);
 
         if (strlen($str) > $max)
         {
-            $to = $max - strlen($cut);
+            $to = $max - strlen($ellipsis);
             $result = substr($str, 0, $to);
 
-            if ($useWord)
+            if ($wordBoundary)
             {
                 $start = explode(' ', substr($str, 0, $to + 25));
                 $end = explode(' ', $result);
@@ -118,7 +118,7 @@ class StringUtils
                 }
             }
 
-            $str = rtrim($result) . $cut;
+            $str = rtrim($result) . $ellipsis;
         }
 
         return $str;
