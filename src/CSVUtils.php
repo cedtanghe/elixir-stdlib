@@ -2,11 +2,15 @@
 
 namespace Elixir\STDLib;
 
+use Elixir\STDLib\MacroableTrait;
+
 /**
  * @author Cédric Tanghe <ced.tanghe@gmail.com>
  */
 class CSVUtils 
 {
+    use MacroableTrait;
+    
     /**
      * @var string
      */
