@@ -5,7 +5,6 @@ namespace Elixir\STDLib;
 /**
  * @author Cédric Tanghe <ced.tanghe@gmail.com>
  */
-
 trait MacroableTrait 
 {
     /**
@@ -33,15 +32,23 @@ trait MacroableTrait
     
     /**
      * @ignore
+     */
+    public function __call($method, $arguments) 
+    {
+        return static::__callStatic($method, $arguments);
+    }
+    
+    /**
+     * @ignore
      * @throws \BadMethodCallException
      */
-    public static function __callStatic($name, $arguments)
+    public static function __callStatic($method, $arguments)
     {
-        if (static::hasMacro($name)) 
+        if (static::hasMacro($method)) 
         {
-            return call_user_func_array(static::$macros[$name], $arguments);
+            return call_user_func_array(static::$macros[$method], $arguments);
         }
 
-        throw new \BadMethodCallException(sprintf('Method "%s" is not available.', $name));
+        throw new \BadMethodCallException(sprintf('Method "%s" is not available.', $method));
     }
 }
