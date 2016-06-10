@@ -2,7 +2,10 @@
 
 namespace Elixir\STDLib;
 
-use Elixir\STDLib\ArrayUtils;
+use function Elixir\STDLib\array_get;
+use function Elixir\STDLib\array_has;
+use function Elixir\STDLib\array_remove;
+use function Elixir\STDLib\array_set;
 
 /**
  * @author Cédric Tanghe <ced.tanghe@gmail.com>
@@ -47,7 +50,7 @@ class MessagesCatalog implements \ArrayAccess, \Iterator, \Countable
      */
     public function has($key)
     {
-        return ArrayUtils::has($key, $this->messages);
+        return array_has($key, $this->messages);
     }
 
     /**
@@ -58,7 +61,7 @@ class MessagesCatalog implements \ArrayAccess, \Iterator, \Countable
      */
     public function get($key, array $replacements = [], $default = null)
     {
-        $message =  ArrayUtils::get($key, $this->messages, $default);
+        $message = array_get($key, $this->messages, $default);
         
         if (is_string($message))
         {
@@ -77,7 +80,7 @@ class MessagesCatalog implements \ArrayAccess, \Iterator, \Countable
      */
     public function set($key, $value)
     {
-        ArrayUtils::set($key, $value, $this->messages);
+        array_set($key, $value, $this->messages);
     }
 
     /**
@@ -85,7 +88,7 @@ class MessagesCatalog implements \ArrayAccess, \Iterator, \Countable
      */
     public function remove($key)
     {
-        ArrayUtils::remove($key, $this->messages);
+        array_remove($key, $this->messages);
     }
 
     /**

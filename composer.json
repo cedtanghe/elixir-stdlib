@@ -10,13 +10,9 @@
     ],
     "homepage": "https://github.com/cedtanghe/elixir-stdlib",
     "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/cedtanghe/elixir-di"
-        }
     ],
     "require": {
-        "php": ">=5.4"
+        "php": ">=5.6"
     },
     "require-dev": {
         "phpunit/PHPUnit": "~4.0"
@@ -24,7 +20,10 @@
     "autoload": {
         "psr-4": {
             "Elixir\\STDLib\\": "src/"
-        }
+        },
+        "files": [
+            "src/functions.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
