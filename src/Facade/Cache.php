@@ -8,20 +8,21 @@ use Elixir\STDLib\FacadeTrait;
 /**
  * @author Cédric Tanghe <ced.tanghe@gmail.com>
  */
-class Cache 
+class Cache
 {
     use FacadeTrait;
-    
+
     /**
      * {@inheritdoc}
      */
-    protected static function getFacadeAccessor() 
+    protected static function getFacadeAccessor()
     {
         return 'Elixir\Cache\CacheInterface';
     }
-    
+
     /**
      * @param string $name
+     *
      * @return CacheInterface|null
      */
     public static function with($name)

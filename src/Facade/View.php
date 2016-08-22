@@ -7,14 +7,14 @@ use Elixir\STDLib\FacadeTrait;
 /**
  * @author Cédric Tanghe <ced.tanghe@gmail.com>
  */
-class View 
+class View
 {
     use FacadeTrait;
-    
+
     /**
      * {@inheritdoc}
      */
-    protected static function getFacadeAccessor() 
+    protected static function getFacadeAccessor()
     {
         return 'Elixir\View\ViewInterface';
     }

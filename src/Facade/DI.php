@@ -7,17 +7,17 @@ use Elixir\DI\ContainerInterface;
 /**
  * @author Cédric Tanghe <ced.tanghe@gmail.com>
  */
-class DI 
+class DI
 {
     /**
      * @var ContainerInterface
      */
     protected static $container;
-    
+
     /**
      * @return ContainerInterface
      */
-    public static function getContainer() 
+    public static function getContainer()
     {
         return static::$container;
     }
@@ -29,13 +29,14 @@ class DI
     {
         static::$container = $value;
     }
-    
+
     /**
      * @param string $method
-     * @param array $arguments
+     * @param array  $arguments
+     *
      * @return mixed|void
      */
-    public static function __callStatic($method, $arguments) 
+    public static function __callStatic($method, $arguments)
     {
         return call_user_func_array([static::$container, $method], $arguments);
     }

@@ -5,15 +5,15 @@ namespace Elixir\STDLib;
 /**
  * @author Cédric Tanghe <ced.tanghe@gmail.com>
  */
-trait MacroableTrait 
+trait MacroableTrait
 {
     /**
-     * @var array 
+     * @var array
      */
     protected static $macros = [];
 
     /**
-     * @param string $name
+     * @param string   $name
      * @param callable $macro
      */
     public static function macro($name, callable $macro)
@@ -23,29 +23,30 @@ trait MacroableTrait
 
     /**
      * @param string $name
-     * @return boolean
+     *
+     * @return bool
      */
-    public static function hasMacro($name) 
+    public static function hasMacro($name)
     {
         return isset(static::$macros[$name]);
     }
-    
+
     /**
      * @ignore
      */
-    public function __call($method, $arguments) 
+    public function __call($method, $arguments)
     {
         return static::__callStatic($method, $arguments);
     }
-    
+
     /**
      * @ignore
+     *
      * @throws \BadMethodCallException
      */
     public static function __callStatic($method, $arguments)
     {
-        if (static::hasMacro($method)) 
-        {
+        if (static::hasMacro($method)) {
             return call_user_func_array(static::$macros[$method], $arguments);
         }
 

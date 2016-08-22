@@ -7,14 +7,14 @@ use Elixir\STDLib\FacadeTrait;
 /**
  * @author Cédric Tanghe <ced.tanghe@gmail.com>
  */
-class Router 
+class Router
 {
     use FacadeTrait;
-    
+
     /**
      * {@inheritdoc}
      */
-    protected static function getFacadeAccessor() 
+    protected static function getFacadeAccessor()
     {
         return 'Elixir\Routing\RouterInterface';
     }

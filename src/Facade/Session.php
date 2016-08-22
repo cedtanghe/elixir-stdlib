@@ -7,14 +7,14 @@ use Elixir\STDLib\FacadeTrait;
 /**
  * @author Cédric Tanghe <ced.tanghe@gmail.com>
  */
-class Session 
+class Session
 {
     use FacadeTrait;
-    
+
     /**
      * {@inheritdoc}
      */
-    protected static function getFacadeAccessor() 
+    protected static function getFacadeAccessor()
     {
         return 'Elixir\Session\SessionInterface';
     }

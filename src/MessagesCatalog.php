@@ -10,32 +10,30 @@ use function Elixir\STDLib\array_set;
 /**
  * @author Cédric Tanghe <ced.tanghe@gmail.com>
  */
-
 class MessagesCatalog implements \ArrayAccess, \Iterator, \Countable
 {
     /**
      * @var MessagesCatalog
      */
     protected static $instance;
-    
+
     /**
      * @return MessagesCatalog
      */
     public static function instance()
     {
-        if (null === static::$instance)
-        {
+        if (null === static::$instance) {
             static::$instance = new static();
         }
-        
+
         return static::$instance;
     }
-    
+
     /**
      * @var array
      */
     protected $messages = [];
-    
+
     /**
      * @param array $messages
      */
@@ -43,10 +41,11 @@ class MessagesCatalog implements \ArrayAccess, \Iterator, \Countable
     {
         $this->messages += $messages;
     }
-    
+
     /**
      * @param string|array $key
-     * @return boolean
+     *
+     * @return bool
      */
     public function has($key)
     {
@@ -55,22 +54,21 @@ class MessagesCatalog implements \ArrayAccess, \Iterator, \Countable
 
     /**
      * @param string|array $key
-     * @param array $replacements
-     * @param mixed $default
+     * @param array        $replacements
+     * @param mixed        $default
+     *
      * @return mixed
      */
     public function get($key, array $replacements = [], $default = null)
     {
         $message = array_get($key, $this->messages, $default);
-        
-        if (is_string($message))
-        {
-            foreach ($replacements as $key => $value)
-            {
+
+        if (is_string($message)) {
+            foreach ($replacements as $key => $value) {
                 $message = str_replace($key, $value, $message);
             }
         }
-        
+
         return $message;
     }
 
@@ -106,7 +104,7 @@ class MessagesCatalog implements \ArrayAccess, \Iterator, \Countable
     {
         $this->messages = $data;
     }
-    
+
     /**
      * {@inheritdoc}
      */
@@ -117,12 +115,12 @@ class MessagesCatalog implements \ArrayAccess, \Iterator, \Countable
 
     /**
      * {@inheritdoc}
+     *
      * @throws \InvalidArgumentException
      */
-    public function offsetSet($key, $value) 
+    public function offsetSet($key, $value)
     {
-        if (null === $key)
-        {
+        if (null === $key) {
             throw new \InvalidArgumentException('The key can not be undefined.');
         }
 
@@ -132,7 +130,7 @@ class MessagesCatalog implements \ArrayAccess, \Iterator, \Countable
     /**
      * {@inheritdoc}
      */
-    public function offsetGet($key) 
+    public function offsetGet($key)
     {
         return $this->get($key);
     }
@@ -148,7 +146,7 @@ class MessagesCatalog implements \ArrayAccess, \Iterator, \Countable
     /**
      * {@inheritdoc}
      */
-    public function rewind() 
+    public function rewind()
     {
         return reset($this->messages);
     }
@@ -156,7 +154,7 @@ class MessagesCatalog implements \ArrayAccess, \Iterator, \Countable
     /**
      * {@inheritdoc}
      */
-    public function current() 
+    public function current()
     {
         return $this->get(key($this->messages));
     }
@@ -164,7 +162,7 @@ class MessagesCatalog implements \ArrayAccess, \Iterator, \Countable
     /**
      * {@inheritdoc}
      */
-    public function key() 
+    public function key()
     {
         return key($this->messages);
     }
@@ -180,7 +178,7 @@ class MessagesCatalog implements \ArrayAccess, \Iterator, \Countable
     /**
      * {@inheritdoc}
      */
-    public function valid() 
+    public function valid()
     {
         return null !== key($this->messages);
     }
@@ -192,20 +190,19 @@ class MessagesCatalog implements \ArrayAccess, \Iterator, \Countable
     {
         return count($this->messages);
     }
-    
+
     /**
      * @param array|MessageCatalog
      */
     public function merge($data)
     {
-        if ($data instanceof self)
-        {
+        if ($data instanceof self) {
             $data = $data->all();
         }
-        
+
         $this->messages = array_merge($this->messages, $data);
     }
-    
+
     /**
      * @ignore
      */
